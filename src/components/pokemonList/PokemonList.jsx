@@ -10,7 +10,7 @@ const PokemonList = ({ name, url, details, id, img, stats, types }) => {
     })
 
     return (
-        <NavLink to={`/${id}`}>
+        <NavLink to={`/${id}`} className="pokemon-card-navlink">
             <div className='pokemon-card'>
                 <img className='pokemon-card-img' src={img} alt={name} />
                 <div className='pokemon-card-info'>
