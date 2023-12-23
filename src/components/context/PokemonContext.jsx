@@ -38,7 +38,7 @@ export const PokemonContextProvider = ({ children }) => {
                 res.data.results.map(async (pokemon) => {
                     const pokemonDetail = await axios.get(pokemon.url);
 
-                   
+
                     return {
                         name: pokemon.name,
                         url: pokemon.url,
@@ -54,11 +54,24 @@ export const PokemonContextProvider = ({ children }) => {
 
     }
 
+    const getPokemonModel = async (url) => {
+        try {
+            const response = await axios.get(url)
+// console.log(response);
+            const pokemonModel= response.data.stats
+            console.log(pokemonModel);
+
+        } catch (error) {
+console.log(error);
+        }
+
+    }
+
     useEffect(() => {
         getPokemonData(API)
     }, [])
 
-    return <PokemonContext.Provider value={{ ...state }}>
+    return <PokemonContext.Provider value={{ ...state, getPokemonModel }}>
         {children}
     </PokemonContext.Provider>
 }
