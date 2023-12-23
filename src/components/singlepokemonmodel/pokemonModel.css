@@ -1,0 +1,7 @@
+.pokemon-stat-model{
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    gap: 0.8rem;
+
+}
