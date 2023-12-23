@@ -7,7 +7,7 @@ const API = "https://pokeapi.co/api/v2/pokemon/"
 
 const initialState = {
     pokemons: [],
-    singlePokemon: {}
+    pokemonStats: []
 }
 
 export const PokemonContextProvider = ({ children }) => {
@@ -18,6 +18,12 @@ export const PokemonContextProvider = ({ children }) => {
                 return {
                     ...state,
                     pokemons: action.payload
+                }
+                break;
+            case "POKEMON_STAT_MODEL":
+                return{
+                    ...state,
+                    pokemonStats: action.payload
                 }
                 break;
 
@@ -49,7 +55,7 @@ export const PokemonContextProvider = ({ children }) => {
             dispatch({ type: "SET_POKEMON_DATA", payload: pokemonData })
 
         } catch (error) {
-
+            console.log(error);
         }
 
     }
@@ -57,21 +63,23 @@ export const PokemonContextProvider = ({ children }) => {
     const getPokemonModel = async (url) => {
         try {
             const response = await axios.get(url)
-// console.log(response);
-            const pokemonModel= response.data.stats
-            console.log(pokemonModel);
+            // console.log(response);
+            const pokemonModel = response.data.stats
+            // console.log(pokemonModel);
+            dispatch({type:"POKEMON_STAT_MODEL", payload: pokemonModel})
+            
 
         } catch (error) {
-console.log(error);
+            console.log(error);
         }
 
     }
 
     useEffect(() => {
         getPokemonData(API)
-    }, [])
+    }, [API])
 
-    return <PokemonContext.Provider value={{ ...state, getPokemonModel }}>
+    return <PokemonContext.Provider value={{ ...state, getPokemonModel}}>
         {children}
     </PokemonContext.Provider>
 }
