@@ -9,10 +9,10 @@ const PokemonModel = () => {
 
   const { getPokemonModel } = useContext(PokemonContext)
   const { id } = useParams()
-  const { pokemonStats } = useContext(PokemonContext)
+  const { pokemonStats, pokemonId } = useContext(PokemonContext)
 
-  // console.log("This is id: ",id);
-  // console.log(`this is url of model: ${API}/${id}` );
+  const pokemonImgUrl = `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${id}.svg`
+
 
   useEffect(() => {
     getPokemonModel(`${API}/${id}`)
@@ -20,10 +20,18 @@ const PokemonModel = () => {
 
   // console.log(pokemonStats);
   return (
-    <div className='pokemon-stat-model'>
-      {pokemonStats.map((stats, index)=>{
-        return <PokemonStats key={index} stats={stats}/>
-      })}
+
+
+    /* here put pokemon img not in PokemonStats.jsx */
+    <div className='pokemon-stat-card'>
+      <div className='stat-pokemon-img-box'>
+        <img className="stat-pokemon-img" src={pokemonImgUrl} alt="" />
+      </div>
+      <div className='pokemon-stat-model'>
+        {pokemonStats.map((stats, id) => {
+          return <PokemonStats key={id} stats={stats} pokemonImg={pokemonImgUrl} />
+        })}
+      </div>
     </div>
   )
 }

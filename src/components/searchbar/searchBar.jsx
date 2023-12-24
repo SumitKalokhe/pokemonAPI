@@ -1,32 +1,26 @@
-import { AudioOutlined } from '@ant-design/icons';
-import React from 'react';
-import { Input, Space } from 'antd';
+import React, { useContext } from 'react';
 import './searchbar.css'
-const { Search } = Input;
-const suffix = (
-  <AudioOutlined
-    style={{
-      fontSize: 16,
-      color: '#1677ff',
-    }}
-  />
-);
-const onSearch = (value, _e, info) => console.log(info?.source, value);
-const Searchbar = () =>
-(
-  <div className='input'>
+import { PokemonContext } from '../context/PokemonContext';
 
-    <Space direction="vertical">
-      <Search
-        placeholder="input pokemon name"
-        allowClear
-        onSearch={onSearch}
-        style={{
-          width: 400,
-        }}
-      />
-    </Space>
-  </div>
-);
 
+
+const Searchbar = () => {
+
+
+  const { searchInput, setSearchInput , searchedPokemon} = useContext(PokemonContext)
+
+  const onSearch = (e) =>{
+     setSearchInput(e.target.value)
+    }
+    // console.log(searchInput);
+    // searchedPokemon(searchInput)
+
+    
+  return (
+    <div className='searchbar'>
+      <input className="input-box" type="text" placeholder='enter pokemon name' value={searchInput} onChange={onSearch} />
+      <div className='search-icon-box'><i className="fi fi-rr-search search-icon" onClick={()=>searchedPokemon(searchInput) }></i></div>
+    </div>
+  );
+}
 export default Searchbar;

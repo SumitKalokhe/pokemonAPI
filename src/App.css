@@ -3,5 +3,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 5rem;
+  padding: 4rem 0 0;
+}
+
+.home-navbar{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1rem;
+  justify-content: center;
+}
+
+@media (max-width:950px){
+
+  .home-navbar{
+    display: flex;
+    flex-direction: column;
+  }
 }
