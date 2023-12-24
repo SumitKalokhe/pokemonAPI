@@ -10,7 +10,7 @@ Currently, two official plugins are available:
 
 make a copy
 
-> cd pokemoAPI
-> npm install
-> npm run dev
+cd pokemoAPI
+npm install
+npm run dev
 
